@@ -25,7 +25,7 @@ class InitialClass
   def self.im_i_a_number?(element)
     # No es necesario usar return
     # si deseo retornar un valor.
-    element.is_a?(Number)
+    element.is_a?(Fixnum)
   end
 
   def self.im_i_a_string?(element)
