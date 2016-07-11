@@ -1,0 +1,40 @@
+gtrujillo:  (ruby-2.1.2) [master] $ irb -r ./loza.rb
+2.1.2 :001 > require 'ropa'
+2.1.2 :002 > require './ropa'
+ => true
+2.1.2 :003 > require './lavable'
+ => false
+2.1.2 :004 > loza = Loza.new('Plato')
+ => #<Loza:0x000000019ea588 @tipo="Plato", @sucio=false>
+2.1.2 :005 > ropa = Ropa.new('Azul', 'Blue Jean')
+ => #<Ropa:0x000000019cb818 @color="Azul", @tipo="Blue Jean">
+
+# El método de instancia lavar en extend
+# Puede ser utilizado como método de clase
+2.1.2 :004 > Loza.lavar
+=> nil
+
+# El método de clase verificar NO
+# puede ser usado ni en include in en extend
+2.1.2 :006 > loza.verificar
+NoMethodError: undefined method `verificar' for #<Loza:0x000000019ea588 @tipo="Plato", @sucio=false>
+	from (irb):6
+	from /home/gtrujillo/.rvm/rubies/ruby-2.1.2/bin/irb:11:in `<main>'
+2.1.2 :007 > ropa.verificar
+NoMethodError: undefined method `verificar' for #<Ropa:0x000000019cb818 @color="Azul", @tipo="Blue Jean">
+	from (irb):7
+	from /home/gtrujillo/.rvm/rubies/ruby-2.1.2/bin/irb:11:in `<main>'
+
+# El método de clase lavar en extend
+# NO puede ser usado como método de instancia
+2.1.2 :006 > loza.lavar
+NoMethodError: undefined method `lavar' for #<Loza:0x00000000e7dab0 @tipo="Plato", @sucio=true>
+	from (irb):6
+	from /home/gtrujillo/.rvm/rubies/ruby-2.1.2/bin/irb:11:in `<main>'
+# Pasa lo contrario con include donde SI puede
+# ser usado como método de instancia
+2.1.2 :007 > ropa.usar
+ => true
+2.1.2 :008 > ropa.lavar
+Lavando Ropa...
+ => false
